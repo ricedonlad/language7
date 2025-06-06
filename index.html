@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ứng dụng học từ vựng của tôi</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" href="app_icon.png" type="image/png">
+    <link rel="apple-touch-icon" href="app_icon.png">
+</head>
+<body>
+    <div class="container">
+
+        <!-- 메인 앱 제목 -->
+        <div class="main-header">
+            <h1>Ứng dụng học từ vựng của tôi</h1>
+        </div>
+
+        <!-- 탭 내비게이션 -->
+        <div class="tab-navigation">
+            <button class="tab-button active" data-tab="schedule">Học</button>
+            <button class="tab-button" data-tab="add-word">Thêm từ</button>
+            <button class="tab-button" data-tab="search-word">Tìm từ</button>
+            <button class="tab-button" data-tab="data-settings">Dữ liệu & Cài đặt</button>
+        </div>
+
+        <!-- 탭 내용: 학습 스케줄 & 학습 시작 (기본 활성화) -->
+        <div id="schedule-tab-content" class="tab-content active">
+            <div class="section-schedule">
+                <h2>Lịch học</h2>
+                <p id="overallScheduleDisplay" class="status-message">Tải dữ liệu hoặc thiết lập lịch học.</p>
+                <div id="dailyScheduleButtons" class="schedule-buttons-container">
+                    <!-- Day buttons will be inserted here by JavaScript -->
+                </div>
+                <button id="adjustScheduleBtn">Điều chỉnh lịch học</button>
+            </div>
+
+            <hr> <!-- 섹션 간 구분선 -->
+
+            <div class="section-start-study">
+                <button id="startStudyBtn">Học toàn bộ</button>
+            </div>
+        </div>
+
+        <!-- 탭 내용: 단어 추가 -->
+        <div id="add-word-tab-content" class="tab-content">
+            <div class="section-add-word">
+                <h2>Thêm từ mới</h2>
+                <textarea id="newForeignWord" placeholder="Từ tiếng nước ngoài" class="input-field"></textarea>
+                <textarea id="newMeaning" placeholder="Nghĩa" class="input-field"></textarea>
+                <button id="addWordBtn">Thêm từ</button>
+            </div>
+        </div>
+
+        <!-- 탭 내용: 단어 검색 -->
+        <div id="search-word-tab-content" class="tab-content">
+            <div class="section-search">
+                <h2>Tìm từ</h2>
+                <input type="text" id="searchTerm" placeholder="Tìm từ tiếng nước ngoài hoặc tiếng mẹ đẻ" class="input-field">
+                <button id="searchBtn">Tìm kiếm</button>
+                <div id="searchResults" class="search-results-container">
+                    <!-- Kết quả tìm kiếm sẽ được thêm vào đây động -->
+                </div>
+            </div>
+        </div>
+
+        <!-- 탭 내용: 데이터 관리 & 설정 -->
+        <div id="data-settings-tab-content" class="tab-content">
+            <div class="section-data-management">
+                <h2>Quản lý dữ liệu</h2>
+                <div class="button-row">
+                    <button id="exportCsvBtn">Xuất CSV</button>
+                    <button id="exportJsonBtn">Xuất JSON</button>
+                </div>
+                <div style="margin-top: 10px;">
+                    <input type="file" id="importFile" accept=".csv, .json" style="display: none;">
+                    <button id="importBtn">Nhập tệp CSV / JSON</button>
+                    <span id="fileNameDisplay">Chưa chọn tệp</span>
+                    <button id="confirmImportBtn" style="display: none;">Nhập</button>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <script src="first_page.js"></script>
+    <script>
+        // JavaScript로 탭 전환 기능을 추가해야 합니다.
+        document.addEventListener('DOMContentLoaded', () => {
+            const tabButtons = document.querySelectorAll('.tab-button');
+            const tabContents = document.querySelectorAll('.tab-content');
+
+            tabButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    // 모든 탭 버튼의 active 클래스 제거
+                    tabButtons.forEach(btn => btn.classList.remove('active'));
+                    // 클릭된 버튼에 active 클래스 추가
+                    button.classList.add('active');
+
+                    // 모든 탭 콘텐츠 숨기기
+                    tabContents.forEach(content => content.style.display = 'none');
+
+                    // 클릭된 탭에 해당하는 콘텐츠 보이기
+                    const targetTabId = button.dataset.tab + '-tab-content';
+                    document.getElementById(targetTabId).style.display = 'block'; // flex 또는 block, 필요에 따라 조정
+
+                    // 만약 탭이 변경될 때마다 특정 섹션의 내용을 새로고침하거나 초기화해야 한다면, 여기에 추가 로직을 구현합니다.
+                    // 예: 검색 탭으로 이동 시 검색 결과 초기화
+                    // if (button.dataset.tab === 'manage-words') { // 이 부분은 이제 'search-word'로 변경될 수 있음
+                    //     document.getElementById('searchResults').innerHTML = '';
+                    //     document.getElementById('searchTerm').value = '';
+                    // }
+                });
+            });
+
+            // 초기 로드 시 '학습' 탭 활성화 (HTML에 active 클래스로 이미 설정되어 있음)
+            // 필요하다면 여기서 초기화 로직을 추가할 수 있습니다.
+        });
+    </script>
+</body>
+</html>

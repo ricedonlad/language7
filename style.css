@@ -1,0 +1,799 @@
+/* --- START OF FILE style.css --- */
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start; /* 상단 정렬 */
+    min-height: 100vh;
+    background-color: #f4f7f6;
+    margin: 20px;
+    color: #333;
+    box-sizing: border-box; /* 모든 요소에 기본적으로 적용될 수 있도록 */
+}
+
+.container {
+    background-color: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+    padding: 30px;
+    width: 100%;
+    max-width: 500px;
+    text-align: center;
+    box-sizing: border-box; /* 패딩 포함 크기 계산 */
+}
+
+h1 {
+    color: #2c3e50;
+    margin-bottom: 25px;
+    font-size: 1.8em;
+}
+
+/* 메인 헤더 (제목 + 홈/모드 버튼) */
+.main-header {
+    margin-bottom: 25px;
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* 자식 요소들 가운데 정렬 */
+}
+
+.main-header h1 {
+    color: #2c3e50;
+    margin-bottom: 15px; /* 제목 아래 여백 조정 */
+    font-size: 1.8em;
+}
+
+/* 아래부터는 현재 HTML 구조에 사용되지 않는 클래스이지만, 기존 스타일을 유지하기 위해 남겨둠 */
+.mode-selection-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 25px;
+    width: 100%;
+    flex-wrap: wrap;
+}
+
+.mode-selection {
+    display: flex;
+    gap: 10px;
+}
+
+.mode-selection button {
+    background-color: #ecf0f1;
+    color: #333;
+    border: 1px solid #bdc3c7;
+    padding: 10px 20px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 1em;
+    transition: background-color 0.3s, border-color 0.3s, color 0.3s;
+    box-sizing: border-box;
+}
+
+.mode-selection button.active {
+    background-color: #3498db;
+    color: #ffffff;
+    border-color: #3498db;
+}
+
+.mode-selection button:hover:not(.active) {
+    background-color: #e0e6e9;
+}
+
+.word-display-area {
+    padding: 10px;
+    margin-bottom: 15px;
+    box-sizing: border-box;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 200px;
+}
+
+/* --- 플래시 카드 관련 CSS --- */
+.flashcard-container {
+    perspective: 1000px;
+    width: 100%;
+    max-width: 400px;
+    height: 180px;
+    position: relative;
+    cursor: pointer;
+    user-select: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    -webkit-touch-callout: none;
+    touch-action: pan-y;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 12px;
+    background-color: #f0f8ff;
+    border: 1px solid #cce0ff;
+    overflow: hidden;
+}
+
+.flashcard {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    transition: transform 0.6s;
+    transform-style: preserve-3d;
+}
+
+.flashcard-inner {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    transform-style: preserve-3d;
+    transition: transform 0.6s;
+    background-color: #f7faff;
+    border-radius: 12px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.flashcard-container.flipped .flashcard-inner {
+    transform: rotateY(180deg);
+}
+
+.flashcard-face {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+.flashcard-front {
+    background-color: #e8f0fe;
+    color: #2c3e50;
+    border-radius: 12px;
+}
+
+.flashcard-back {
+    background-color: #ffffff;
+    color: #333;
+    transform: rotateY(180deg);
+    border-radius: 12px;
+}
+
+.word-label {
+    font-size: 0.8em;
+    color: #7f8c8d;
+    margin-bottom: 5px;
+}
+
+.word-text {
+    margin: 0;
+    text-align: center;
+    word-break: keep-all;
+    width: 100%;
+    white-space: pre-wrap;
+    overflow-wrap: break-word;
+}
+
+.foreign-word {
+    font-size: 1.8em;
+    font-weight: bold;
+    color: #2980b9;
+}
+
+.meaning {
+    font-size: 1.1em;
+    color: #555;
+}
+/* --- 플래시 카드 관련 CSS 끝 --- */
+
+
+/* 통합 컨트롤 바 (현재 HTML에 사용되지 않지만, 기존 스타일 유지) */
+.unified-controls-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 25px;
+    padding: 5px 0;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 10px;
+    flex-wrap: wrap;
+}
+
+.controls-group-left, .controls-group-right {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+    flex-wrap: nowrap;
+}
+
+/* 아이콘 버튼 공통 스타일 (현재 HTML에 사용되지 않지만, 기존 스타일 유지) */
+.icon-button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 5px;
+    border-radius: 5px;
+    transition: background-color 0.2s;
+    position: relative;
+    box-sizing: border-box;
+}
+
+.icon-button:hover {
+    background-color: rgba(0, 0, 0, 0.05);
+}
+
+.icon-button img {
+    width: 24px;
+    height: 24px;
+    vertical-align: middle;
+}
+
+
+/* 내비게이션 영역 (현재 HTML에 사용되지 않지만, 기존 스타일 유지) */
+.navigation-area {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+    gap: 15px;
+}
+
+/* 버튼 크기 통일 (현재 HTML에 사용되지 않지만, 기존 스타일 유지) */
+.navigation-area button {
+    background-color: #2ecc71;
+    color: white;
+    border: none;
+    padding: 12px 25px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 1.1em;
+    font-weight: bold;
+    width: 120px;
+    flex-shrink: 0;
+    transition: background-color 0.3s, transform 0.1s;
+    white-space: nowrap;
+    box-sizing: border-box;
+}
+
+.navigation-area button:hover {
+    background-color: #27ae60;
+    transform: translateY(-1px);
+}
+
+.navigation-area button:active {
+    transform: translateY(0);
+}
+
+.navigation-area button:disabled {
+    background-color: #bdc3c7;
+    cursor: not-allowed;
+    transform: none;
+}
+.navigation-area button:disabled:hover {
+    background-color: #bdc3c7;
+}
+
+.status-message {
+    color: #e74c3c;
+    font-weight: bold;
+    font-size: 0.95em;
+    flex-grow: 1;
+    text-align: center;
+    min-width: 80px;
+}
+
+.word-count { /* 현재 HTML에 사용되지 않지만, 기존 스타일 유지 */
+    margin-bottom: 30px;
+    font-size: 1.1em;
+    color: #7f8c8d;
+}
+
+
+hr {
+    border: none;
+    border-top: 1px solid #eee;
+    margin: 15px 0; /* 섹션 간 구분선 여백 */
+}
+
+/* 모든 섹션에 공통 스타일 적용 */
+.section-add-word, .section-edit-word, .section-data-management, .section-schedule, .section-start-study, .section-search {
+    text-align: left;
+    margin-bottom: 25px; /* 섹션 자체의 하단 여백 유지 */
+}
+
+/* 모든 섹션 제목에 공통 스타일 적용 */
+.section-add-word h2, .section-edit-word h2, .section-data-management h2, .section-schedule h2, .section-start-study h2, .section-search h2 {
+    color: #34495e;
+    margin-bottom: 8px; /* 제목 아래 여백 줄임 */
+    margin-top: 25px; /* 각 섹션 제목 위 여백 조정 (탭 내부) */
+    font-size: 1.5em;
+    text-align: center;
+}
+/* 각 탭의 첫 번째 섹션 제목은 상단 여백을 없앰 */
+#schedule-tab-content .section-schedule h2,
+#add-word-tab-content .section-add-word h2,
+#search-word-tab-content .section-search h2,
+#data-settings-tab-content .section-data-management h2 {
+    margin-top: 0;
+}
+
+
+.input-field {
+    width: 100%;
+    padding: 12px 25px; /* 수평 패딩을 늘림 (핵심 수정) */
+    margin-bottom: 15px;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    font-size: 1em;
+    min-height: 50px; /* 명시적 최소 높이 설정 */
+    overflow: hidden;
+    resize: none;
+    /* vertical-align: top; - 이 속성 제거 */
+    line-height: 1.5em;
+    box-sizing: border-box;
+}
+
+.input-field::placeholder {
+    color: #bbb;
+}
+
+/* 버튼들을 한 줄에 배열하는 컨테이너 */
+.button-row {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 10px;
+}
+
+.button-row button {
+    flex: 1;
+}
+
+/* 모든 버튼에 공통 스타일 적용 */
+.section-add-word button, .section-edit-word button, .section-data-management button, .section-schedule button, .section-start-study button, .section-search button, .button-row button {
+    background-color: #f39c12;
+    color: white;
+    border: none;
+    padding: 12px 25px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 1em;
+    width: 100%;
+    box-sizing: border-box;
+    transition: background-color 0.3s;
+}
+
+.section-data-management button {
+    background-color: #9b59b6; /* Export/Import buttons */
+}
+
+.section-schedule button {
+    background-color: #2ecc71; /* Adjust Schedule button */
+}
+.section-start-study button {
+    background-color: #3498db; /* Start Study button */
+}
+
+/* 검색 버튼 */
+.section-search button {
+    background-color: #3498db; /* Search button color */
+}
+
+.section-add-word button:hover {
+    background-color: #e67e22;
+}
+.section-edit-word button:hover {
+    background-color: #f39c12; /* Keep same hover as add button */
+}
+.section-data-management button:hover {
+    background-color: #8e44ad;
+}
+.section-schedule button:hover {
+    background-color: #27ae60;
+}
+.section-start-study button:hover {
+    background-color: #2980b9;
+}
+.section-search button:hover {
+    background-color: #2980b9;
+}
+
+
+.cancel-button {
+    background-color: #7f8c8d !important;
+}
+
+.cancel-button:hover {
+    background-color: #95a5a6 !important;
+}
+
+#fileNameDisplay {
+    margin-left: 10px;
+    font-size: 0.9em;
+    color: #555;
+    vertical-align: middle;
+}
+
+#confirmImportBtn {
+    background-color: #c0392b;
+}
+
+#confirmImportBtn:hover {
+    background-color: #a93226;
+}
+
+/* Daily Schedule Buttons Container */
+.schedule-buttons-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 15px;
+    margin-bottom: 20px;
+}
+
+.schedule-buttons-container button {
+    background-color: #3498db;
+    color: white;
+    border: none;
+    padding: 8px 12px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 0.9em;
+    min-width: 50px;
+    max-width: 90px;
+    flex-grow: 0;
+    transition: background-color 0.3s;
+    box-sizing: border-box;
+}
+
+.schedule-buttons-container button:hover {
+    background-color: #2980b9;
+}
+
+.schedule-buttons-container button.completed {
+    background-color: #2ecc71;
+}
+.schedule-buttons-container button.completed:hover {
+    background-color: #27ae60;
+}
+
+/* 검색 결과 컨테이너 */
+.search-results-container {
+    margin-top: 15px;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    max-height: 250px;
+    overflow-y: auto;
+    background-color: #fcfcfc;
+    padding: 10px;
+}
+
+.search-results-container p {
+    color: #777;
+    text-align: center;
+    padding: 10px 0;
+}
+
+/* 개별 검색 결과 항목 */
+.search-result-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 15px;
+    border-bottom: 1px solid #eee;
+    cursor: pointer;
+    transition: background-color 0.2s;
+    font-size: 0.95em;
+}
+
+.search-result-item:last-child {
+    border-bottom: none;
+}
+
+.search-result-item:hover {
+    background-color: #eef;
+}
+
+.search-word-foreign {
+    font-weight: bold;
+    color: #2980b9;
+    flex-basis: 40%;
+    text-align: left;
+}
+
+.search-word-meaning {
+    color: #555;
+    flex-basis: 40%;
+    text-align: left;
+}
+
+.search-word-day {
+    font-size: 0.85em;
+    color: #7f8c8d;
+    flex-basis: 20%;
+    text-align: right;
+    white-space: nowrap;
+}
+
+/* 맨 위 내비게이션 바 (현재 HTML에 사용되지 않지만, 기존 스타일 유지) */
+.home-button {
+    background-color: #6c757d;
+    color: white;
+    border: none;
+    padding: 8px 12px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 0.9em;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    transition: background-color 0.2s;
+    flex-shrink: 0;
+    box-sizing: border-box;
+}
+
+.home-button:hover {
+    background-color: #5a6268;
+}
+
+.home-button img {
+    filter: invert(100%);
+}
+
+
+/* --- 탭 내비게이션 스타일 --- */
+.tab-navigation {
+    display: flex;
+    justify-content: space-around;
+    /* margin-bottom: 10px; 주석 처리 또는 제거 */
+    border-bottom: 2px solid #ddd;
+    padding-bottom: 8px; /* 구분선 위 여백 */
+    flex-wrap: nowrap; /* 탭 버튼이 줄바꿈되지 않도록 설정 */
+    gap: 5px; /* 버튼 사이 간격 */
+    margin-bottom: 15px; /* 하단 여백 추가 (구분선과 콘텐츠 사이) */
+}
+
+.tab-button {
+    background-color: #ecf0f1;
+    color: #333;
+    border: none;
+    border-radius: 8px;
+    padding: 10px 15px;
+    cursor: pointer;
+    font-size: 1em;
+    font-weight: bold;
+    transition: background-color 0.3s, color 0.3s;
+    flex-grow: 1; /* 모든 버튼이 남은 공간을 균등하게 차지하도록 */
+    text-align: center;
+    min-width: 0; /* flex-grow와 함께 작동하여 필요시 축소 허용 */
+    box-sizing: border-box;
+    /* margin: 5px; - 이 속성 제거, 대신 gap 사용 */
+}
+
+.tab-button:hover:not(.active) {
+    background-color: #e0e6e9;
+    color: #2c3e50;
+}
+
+.tab-button.active {
+    background-color: #3498db;
+    color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* 탭 내용 컨테이너 */
+.tab-content {
+    display: none; /* 기본적으로 숨김 */
+    padding-top: 0; /* 탭 내용과 탭 버튼 사이의 여백 제거 */
+}
+
+.tab-content.active {
+    display: block; /* 활성화된 탭만 보이도록 */
+}
+/* --- 탭 내비게이션 스타일 끝 --- */
+
+
+/* Responsive adjustments for smaller screens */
+@media (max-width: 600px) {
+    .container {
+        margin: 10px;
+        padding: 15px;
+        border-radius: 8px;
+    }
+
+    h1 {
+        font-size: 1.4em;
+        margin-bottom: 15px;
+    }
+    
+    .main-header {
+        margin-bottom: 10px;
+    }
+
+    .main-header h1 {
+        margin-bottom: 8px;
+    }
+
+    /* 아래부터는 현재 HTML 구조에 사용되지 않는 클래스이지만, 기존 스타일을 유지하기 위해 남겨둠 */
+    .mode-selection-container {
+        gap: 8px;
+        margin-bottom: 15px;
+    }
+    
+    .mode-selection button, .home-button {
+        padding: 8px 15px;
+        font-size: 0.9em;
+        min-width: unset;
+        flex-basis: auto;
+        flex-grow: 1;
+        max-width: 48%;
+        white-space: nowrap;
+        box-sizing: border-box;
+    }
+    .mode-selection {
+        flex-grow: 1;
+        flex-basis: auto;
+        justify-content: center;
+        gap: 8px;
+    }
+
+    /* 플래시 카드 영역 모바일 조정 */
+    .word-display-area {
+        padding: 5px;
+        min-height: 180px;
+    }
+    .flashcard-container {
+        height: 150px;
+    }
+    .flashcard-face {
+        padding: 10px 15px;
+    }
+    .foreign-word {
+        font-size: 1.5em;
+    }
+    .meaning {
+        font-size: 1em;
+    }
+
+    /* 통합 컨트롤 바 모바일 조정 (현재 HTML에 사용되지 않지만, 기존 스타일 유지) */
+    .unified-controls-bar {
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 8px;
+        margin-bottom: 15px;
+        padding-bottom: 8px;
+    }
+    .controls-group-left, .controls-group-right {
+        width: auto;
+        justify-content: center;
+        gap: 5px;
+        flex-wrap: wrap;
+        flex-basis: 48%;
+        margin: 2px 0;
+    }
+    .unified-controls-bar .icon-button {
+        padding: 3px;
+        width: 30px;
+        height: 30px;
+        font-size: 0.75em;
+    }
+    .unified-controls-bar .icon-button img {
+        width: 18px;
+        height: 18px;
+    }
+
+    .navigation-area button { /* 현재 HTML에 사용되지 않지만, 기존 스타일 유지 */
+        padding: 10px 15px;
+        font-size: 0.9em;
+        width: 100px;
+    }
+    
+    .status-message {
+        min-width: unset;
+        font-size: 0.85em;
+    }
+
+    .word-count { /* 현재 HTML에 사용되지 않지만, 기존 스타일 유지 */
+        margin-bottom: 15px;
+        font-size: 1em;
+    }
+
+
+    hr {
+        margin: 10px 0; /* 모바일에서 구분선 여백 조정 */
+    }
+
+    /* 모든 섹션에 공통 스타일 적용 */
+    .section-add-word, .section-edit-word, .section-data-management, .section-schedule, .section-start-study, .section-search {
+        margin-bottom: 15px;
+    }
+
+    /* 모든 섹션 제목에 공통 스타일 적용 */
+    .section-add-word h2, .section-edit-word h2, .section-data-management h2, .section-schedule h2, .section-start-study h2, .section-search h2 {
+        margin-bottom: 5px;
+        margin-top: 20px; /* 각 섹션 제목 위 여백 조정 (모바일) */
+        font-size: 1.3em;
+    }
+    /* 각 탭의 첫 번째 섹션 제목은 상단 여백을 없앰 */
+    #schedule-tab-content .section-schedule h2,
+    #add-word-tab-content .section-add-word h2,
+    #search-word-tab-content .section-search h2,
+    #data-settings-tab-content .section-data-management h2 {
+        margin-top: 0;
+    }
+
+
+    .input-field {
+        width: 100%;
+        padding: 10px 20px; /* 수평 패딩을 늘림 (핵심 수정) */
+        margin-bottom: 10px;
+        font-size: 0.9em;
+        min-height: 46px; /* 모바일 최소 높이 설정 */
+    }
+
+    .button-row {
+        gap: 8px;
+        margin-bottom: 8px;
+    }
+
+    .section-add-word button, .section-edit-word button, .section-data-management button, .section-schedule button, .section-start-study button, .section-search button, .button-row button {
+        padding: 10px 15px;
+        font-size: 0.9em;
+    }
+
+    .schedule-buttons-container {
+        gap: 8px;
+        margin-top: 10px;
+        margin-bottom: 15px;
+    }
+    .schedule-buttons-container button {
+        padding: 6px 10px;
+        font-size: 0.85em;
+        min-width: 45px;
+        max-width: 80px;
+        flex-grow: 0;
+    }
+
+    .search-results-container {
+        margin-top: 10px;
+        max-height: 200px;
+        padding: 8px;
+    }
+
+    .search-result-item {
+        padding: 8px 10px;
+        font-size: 0.9em;
+    }
+    .search-word-foreign, .search-word-meaning, .search-word-day {
+        font-size: 0.85em;
+    }
+
+    /* --- 탭 내비게이션 스타일 (모바일 반응형) --- */
+    .tab-navigation {
+        /* flex-direction: column; - 이 속성 제거 */
+        /* align-items: center; - 이 속성 제거 */
+        gap: 5px; /* 버튼 사이 간격 유지 */
+        /* margin-bottom: 15px; - 이 속성 유지 */
+        padding-bottom: 5px;
+        justify-content: space-around; /* 버튼들을 균등하게 분배 */
+        flex-wrap: nowrap; /* 줄바꿈 방지 */
+    }
+
+    .tab-button {
+        width: auto; /* auto로 설정하여 flex-grow가 작동하도록 */
+        padding: 8px 10px;
+        font-size: 0.9em;
+        /* margin: 3px; - 이 속성 제거, 대신 gap 사용 */
+    }
+
+    .tab-content {
+        padding-top: 0;
+    }
+    /* --- 탭 내비게이션 스타일 끝 (모바일 반응형) --- */
+}

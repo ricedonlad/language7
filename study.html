@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ứng dụng học từ vựng của tôi</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" href="app_icon.png" type="image/png"> <!-- 앱 아이콘 추가 -->
+    <link rel="apple-touch-icon" href="app_icon.png"> <!-- iOS 홈 화면 아이콘용 -->
+</head>
+<body>
+    <div class="container">
+        <div class="main-header">
+            <!-- 제목(h1)이 여기서 삭제되었습니다. -->
+            <div class="mode-selection-container">
+                <!-- 홈 버튼이 이제 이 라인에 함께 위치 -->
+                <button id="homeBtn" class="icon-button home-button">
+                    <img src="https://img.icons8.com/ios-filled/24/000000/home.png" alt="Về trang chủ">
+                    
+                </button>
+                <div class="mode-selection">
+                    <button id="generalModeBtn" class="active">Chế độ chung</button>
+                    <button id="favoriteModeBtn">Chế độ yêu thích</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- 통합 컨트롤 바: 표시모드/폰트/즐겨찾기해제 (왼쪽) + 단어액션 (오른쪽) -->
+        <div class="unified-controls-bar">
+            <div class="controls-group-left">
+                <!-- 표시 모드 전환 아이콘 (A->B / B->A) -->
+                <button id="toggleDisplayModeBtn" class="icon-button">
+                    <img id="displayModeIcon" src="https://img.icons8.com/ios-glyphs/24/000000/forward--v1.png" alt="Chuyển chế độ">
+                </button>
+                <!-- 폰트 크기 조절 아이콘 -->
+                <button id="decreaseFontSizeBtn" class="icon-button font-size-icon-button">
+                    <img src="https://img.icons8.com/ios-glyphs/24/000000/minus.png" alt="Phông chữ nhỏ">
+                </button>
+                <button id="increaseFontSizeBtn" class="icon-button font-size-icon-button">
+                    <img src="https://img.icons8.com/ios-glyphs/24/000000/plus.png" alt="Phông chữ lớn">
+                </button>
+                <!-- 현재 Day 즐겨찾기 모두 해제 아이콘 -->
+                <button id="clearFavoritesDayBtn" class="icon-button clear-favorites-button">
+                    <img src="https://img.icons8.com/ios-glyphs/24/000000/filled-star.png" alt="Bỏ tất cả yêu thích">
+                    <span class="icon-overlay-text">X</span> <!-- 삭제 표시를 위한 오버레이 텍스트 -->
+                </button>
+            </div>
+            <div class="controls-group-right">
+                <!-- 기존 발음, 즐겨찾기, 수정, 삭제 아이콘 -->
+                <button id="speakBtn" class="icon-button">
+                    <img src="https://img.icons8.com/ios-filled/24/000000/speaker.png" alt="Nghe phát âm">
+                </button>
+                <button id="favoriteBtn" class="icon-button">
+                    <img id="favoriteIcon" src="https://img.icons8.com/ios-glyphs/24/000000/star--v1.png" alt="Yêu thích">
+                </button>
+                <button id="editBtn" class="icon-button">
+                    <img src="https://img.icons8.com/ios-glyphs/24/000000/edit--v1.png" alt="Sửa">
+                </button>
+                <button id="deleteBtn" class="icon-button">
+                    <img src="https://img.icons8.com/ios-glyphs/24/000000/filled-trash.png" alt="Xóa">
+                </button>
+            </div>
+        </div>
+        <!-- 통합 컨트롤 바 끝 -->
+
+
+        <div class="word-display-area">
+            <!-- 플래시 카드 영역 시작 -->
+            <div id="flashcardContainer" class="flashcard-container">
+                <div class="flashcard">
+                    <div class="flashcard-inner">
+                        <div class="flashcard-face flashcard-front">
+                            <!-- "외국어" 라벨이 여기서 삭제되었습니다. -->
+                            <p id="foreignWord" class="word-text foreign-word">Đang tải...</p>
+                        </div>
+                        <div class="flashcard-face flashcard-back">
+                            <!-- "모국어" 라벨이 여기서 삭제되었습니다. -->
+                            <p id="meaning" class="word-text meaning">Đang tải...</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- 플래시 카드 영역 끝 -->
+        </div>
+        
+        <!-- 내비게이션 버튼과 페이지 표시 -->
+        <div class="navigation-area">
+            <button id="prevBtn">&lt; Trang trước</button>
+            <span id="statusMessage" class="status-message"></span>
+            <button id="nextBtn">Trang sau &gt;</button>
+        </div>
+
+        <!-- 단어 카운트 div가 여기서 삭제되었습니다. -->
+        
+        <hr>
+
+        <!-- 단어 수정 섹션 -->
+        <div class="section-edit-word" style="display: none;">
+            <h2>Sửa từ</h2>
+            <input type="text" id="editForeignWord" placeholder="Từ tiếng nước ngoài cần sửa" class="input-field">
+            <input type="text" id="editMeaning" placeholder="Nghĩa cần sửa" class="input-field">
+            <button id="saveEditBtn">Hoàn tất sửa</button>
+            <button id="cancelEditBtn" class="cancel-button">Hủy</button>
+        </div>
+
+        <hr class="edit-hr" style="display: none;">
+
+    </div>
+
+    <script src="study_page.js"></script>
+</body>
+</html>
